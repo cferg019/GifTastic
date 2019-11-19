@@ -1,0 +1,39 @@
+body {
+    background-color: #c4dfe6;
+}
+
+h1 {
+    text-align: center;
+    margin: 15px 0;
+    color: #003b46;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.btn, form {
+    margin-top: 5px;
+}
+
+.animal, #add-animal {
+    background-color: white;
+    color: #07575B;
+    border: 2px solid #07575B;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.animal:hover, #add-animal:hover {
+    background-color: #07575B;
+    color: white;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+label {
+    margin-bottom: 2px;
+    color: #07575B;
+    font-weight: bold;
+}
