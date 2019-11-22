@@ -1,4 +1,4 @@
-var tvShows = ["Spongebob Squarepants", "Parks & Rec", "Saved by the Bell", "Rocko's Modern Life", "Community", "The Office", "30 Rock"];
+var tvShows = ["Spongebob Squarepants", "Parks & Rec", "Rocko's Modern Life", "Community", "The Office", "30 Rock", "Home Improvement", "Friends", "All That", "Breaking Bad", "Game of Thrones", "SNL"];
 
 // function to loop through 'tvShows' array to append to button display div
 function createButtons() {
@@ -8,19 +8,25 @@ function createButtons() {
         a.addClass("tvButtons");
         a.attr("data-show-name", tvShows[i]);
         a.text(tvShows[i]);
-        a.on("click", handleButtonClick)
+        a.on("click", handleButtonClick);
         $("#buttonDisplay").append(a);
-    }
-}
+    };
+};
 
 // on click event for adding new tv show buttons and appending to button display div
 $("#addNewShow").on("click", function (event) {
     event.preventDefault();
     var userShowInput = $("#newSearchInput").val().trim();
-    tvShows.push(userShowInput);
-    // clear input field after submitting option
-    $("#newSearchInput").val("")
-    createButtons();
+    // ensure user cannot add empty buttons
+    if (userShowInput === "") {
+        return;
+    }
+    else {
+        tvShows.push(userShowInput);
+        // clear input field after submitting option
+        $("#newSearchInput").val("");
+        createButtons();
+    };
 });
 
 // function building on click event for buttons created in createButtons function
@@ -29,7 +35,7 @@ function handleButtonClick(event) {
     var tvShowURLinput = $(this).attr("data-show-name");
     //endcodeURI --> translates spaces in user input into readable string
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + encodeURI(tvShowURLinput) + "&api_key=EwRRkwAvsMmOUtLpLz92yNlczXJOCBlb&limit=25";
-    console.log(queryURL)
+    console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -46,37 +52,31 @@ function handleButtonClick(event) {
             var tvShowImage = $("<img>");
 
             p = "Rating: " + results[i].rating + "<br>";
-            tvShowImage.attr("src", results[i].images.fixed_height_still.url)
-    
+            tvShowImage.attr("src", results[i].images.fixed_height_still.url);
+
             gifDiv.addClass("float-md-left");
-            gifDiv.append(p);
             gifDiv.append(tvShowImage);
+            gifDiv.append("<br>" + p);
+
 
             $("#showGifsHere").append(gifDiv);
-        }
-    })
-}
+        };
+    });
+};
 
-$(document).on("click", "img", function() {
-    console.log("hi there");        
-
-});
-
-
- $("body").on("click", "img", function() {
+// on click function for playing/stopping gif 
+$("body").on("click", "img", function () {
     var src = $(this).attr("src");
-  if($(this).hasClass("playing")){
-     //stop
-     $(this).attr("src", src.replace(".gif", "_s.gif"))
-     $(this).removeClass("playing");
-  } else {
-    //play
-    $(this).addClass("playing");
-    $(this).attr("src", src.replace("_s.gif", ".gif"))
-  }
+    if ($(this).hasClass("animate")) {
+        //stop
+        $(this).attr("src", src.replace(".gif", "_s.gif"));
+        $(this).removeClass("animate");
+    } else {
+        //play
+        $(this).addClass("animate");
+        $(this).attr("src", src.replace("_s.gif", ".gif"));
+    };
 });
-
-
 
 createButtons();
 
