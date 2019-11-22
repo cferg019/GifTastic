@@ -1,5 +1,7 @@
 body {
     background-color: #c4dfe6;
+    font-family: 'Comfortaa', cursive;
+    /* font-family: 'Exo', sans-serif; */
 }
 
 h1 {
@@ -8,13 +10,14 @@ h1 {
     color: #003b46;
     font-size: 60px;
     font-weight: bold;
+    font-family: 'Fredoka One', cursive;
 }
 
 .btn, form {
     margin-top: 5px;
 }
 
-.animal, #add-animal {
+.tvButtons, #addNewShow {
     background-color: white;
     color: #07575B;
     border: 2px solid #07575B;
@@ -23,7 +26,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.animal:hover, #add-animal:hover {
+.tvButtons:hover, #addNewShow:hover {
     background-color: #07575B;
     color: white;
 }
@@ -36,4 +39,26 @@ label {
     margin-bottom: 2px;
     color: #07575B;
     font-weight: bold;
+}
+
+#buttonDisplay {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+
+img:hover {
+    opacity: 75%;
+}
+
+img {
+    width: auto;
+    height: 150px;
+    margin-right: 10px;
+}
+
+#showGifsHere {
+    display: block;
+    margin: auto;
+    justify-content: center;
 }
